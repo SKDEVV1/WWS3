@@ -6,9 +6,10 @@ module.exports = {
   description: "Interact with Blackbox",
   async run({ api, event, send, args }) {
     const prompt = args.join(" ");
-    
+
     if (!prompt) {
-      throw new Error(`Usage: ${api.prefix + name} [your question]`);
+      // Send the usage instruction to the user instead of throwing an error
+      return send(`Usage: ${api.prefix + name} [your question]`);
     }
 
     try {
