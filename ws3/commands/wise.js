@@ -11,7 +11,7 @@ module.exports = {
 
 Example: ${api.prefix + name} what is love?`);
     }
-    send("Please wait... 🔎");
+    send("Teka kupal ka eh... 🔎");
 
     try {
       const gpt = await axios.get('https://joshweb.click/api/gpt-4o', {
