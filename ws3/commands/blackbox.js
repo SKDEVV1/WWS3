@@ -4,24 +4,32 @@ const name = "blackbox";
 module.exports = {
   name,
   description: "Interact with Blackbox",
-  async run ({ api, event, send, args }){
+  async run({ api, event, send, args }) {
     const prompt = args.join(" ");
-    if (!prompt) throw new Error(`Usage: ${api.prefix + name} [your question]`);
-    try {
-    send("Please wait... 🔎");
-    const gpt = await axios.get(`${api.api_josh}/api/blackboxai`, {
-      params: {
-        q: prompt,
-        uid: event.sender.id
-      }
-    });
-    if (!gpt || !gpt.data.status) throw new Error();
-    return send(`${gpt.data.result}
+    
+    if (!prompt) {
+      throw new Error(`Usage: ${api.prefix + name} [your question]`);
+    }
 
-🤖 AI s`);
-    } catch(err){
-      send(err.message || err);
-      return;
+    try {
+      send("Please wait... 🔎");
+
+      const gpt = await axios.get('https://joshweb.click/api/blackboxai', {
+        params: {
+          q: prompt,
+          uid: event.sender.id
+        }
+      });
+
+      if (!gpt || !gpt.data.status) {
+        throw new Error("Failed to get a valid response from the API.");
+      }
+
+      return send(`${gpt.data.result}
+
+🤖 WieAI by Neth Aceberos`);
+    } catch (err) {
+      send(err.message || "An unexpected error occurred.");
     }
   }
-}
+};
