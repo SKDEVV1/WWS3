@@ -1,5 +1,5 @@
 const axios = require("axios");
-const name = "blackbox";
+const name = "wise";
 
 module.exports = {
   name,
@@ -8,18 +8,16 @@ module.exports = {
     const prompt = args.join(" ");
 
     if (!prompt) {
-      // Send the usage instruction to the user instead of throwing an error
       return send(`Usage: ${api.prefix + name} [your question]`);
     }
 
     try {
-      send("Please wait... 🔎");
+      send("wait kipal ka eh");
 
-      // Make the API request with the correct query and user ID
-      const gpt = await axios.get(`https://joshweb.click/api/blackboxai`, {
+      const gpt = await axios.get(`https://joshweb.click/api/gpt-4o`, {
         params: {
-          q: prompt,             // Question from the user
-          uid: event.sender.id   // User ID from the event object
+          q: prompt,             
+          uid: event.sender.id  
         }
       });
 
@@ -30,7 +28,7 @@ module.exports = {
       // Send the result back to the user
       return send(`${gpt.data.result}
 
-🤖 AI by Khaile`);
+🤖 AI by khaile`);
     } catch (err) {
       // Handle errors gracefully
       send(err.message || "An unexpected error occurred.");
