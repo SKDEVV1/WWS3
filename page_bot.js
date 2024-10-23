@@ -81,8 +81,8 @@ app.post('/webhook', async (req, res) => {
 });
 
 async function post() {
-  console.log("Auto 2 Minutes Post Enabled");
-  const autoPost = cron.schedule('*/2 * * * *', async () => {
+  console.log("Auto 1 Hour Post Enabled");
+  const autoPost = cron.schedule(`0 */1 * * *`, async () => {
     const {
       content,
       author
@@ -91,7 +91,6 @@ async function post() {
 ${content}
 -${author}
 `, PAGE_ACCESS_TOKEN);
-    
     console.log("Triggered autopost.");
   }, {
     scheduled: true,
@@ -99,7 +98,6 @@ ${content}
   });
   autoPost.start();
 }
-
 
 app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
