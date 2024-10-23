@@ -17,12 +17,15 @@ Example: ${api.prefix + name} what is love?`);
             cid = "40", // (conversational id)
             model = "Cblackbox";
       const response = await deku[model](q, cid);
-      if (!response || !response.data.status) throw new Error();
+      
+     
+      if (!response || !response.data || !response.data.status) throw new Error("Unexpected response format.");
+      
       send(`${response.data.result}
 
 🤖 `);
     } catch (err) {
-      send(err.message || err);
+      send(err.message || "An error occurred.");
       return;
     }
   }
