@@ -25,7 +25,7 @@ Example: ${api.prefix + name} what is love?`);
 
       send(`${gpt.data.result}
 
-🤖 WieAI by Neth Aceberos`);
+🤖 AI by Khaile`);
     } catch (err) {
       send(err.message || "An error occurred.");
     }
