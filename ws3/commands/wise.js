@@ -9,14 +9,14 @@ module.exports = {
     if (!prompt) {
       return send(`Please enter your question! 
 
-Example: what is love?`);
+Example: ${api.prefix + name} what is love?`);
     }
     send("Please wait... 🔎");
 
     try {
-      const gpt = await axios.get('https://joshweb.click/gpt4', {
+      const gpt = await axios.get('https://joshweb.click/api/gpt-4o', {
         params: {
-          prompt: prompt,
+          q: prompt,
           uid: event.sender.id
         }
       });
@@ -31,4 +31,3 @@ Example: what is love?`);
     }
   }
 };
-        
