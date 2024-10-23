@@ -13,7 +13,7 @@ module.exports = {
     }
 
     try {
-      send("Please wait... 🔎");
+      send("Wait kupal kaba ?");
 
       const gpt = await axios.get('https://joshweb.click/api/blackboxai', {
         params: {
@@ -28,7 +28,8 @@ module.exports = {
 
       return send(`${gpt.data.result}
 
-🤖 WieAI by Neth Aceberos`);
+🤖 Eto na  yung hinahanap mo kupal 
+AI by Khaile`);
     } catch (err) {
       send(err.message || "An unexpected error occurred.");
     }
