@@ -92,19 +92,6 @@ const listenMessage = async (event, pageAccessToken) => {
     }
   }
 }
-if (body.object === 'page') {
-  body.entry.forEach(entry => {
-    entry.messaging.forEach(async event => {
-      const commandName = event.message.text.split(' ')[0].slice(1); // Extract command
-      const args = event.message.text.split(' ').slice(1); // Get command arguments
-
-      const command = api.commands.find(cmd => cmd.name === commandName);
-      if (command) {
-        await command.execute(event.sender.id, args, api);
-      }
-    });
-  });
-}
 
 const listenPostback = async (event, pageAccessToken) => {
   const send = async text => api.sendMessage(senderID, typeof text === "object" ? text : {text}, pageAccessToken),
