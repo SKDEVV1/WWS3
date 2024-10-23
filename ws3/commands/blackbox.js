@@ -28,8 +28,7 @@ module.exports = {
 
       return send(`${gpt.data.result}
 
-🤖 Eto na  yung hinahanap mo kupal 
-AI by Khaile`);
+🤖 AI by Khaile`);
     } catch (err) {
       send(err.message || "An unexpected error occurred.");
     }
