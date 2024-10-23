@@ -30,7 +30,7 @@ module.exports = {
       // Send the result back to the user
       return send(`${gpt.data.result}
 
-🤖 WieAI by Neth Aceberos`);
+🤖 AI by Khaile`);
     } catch (err) {
       // Handle errors gracefully
       send(err.message || "An unexpected error occurred.");
