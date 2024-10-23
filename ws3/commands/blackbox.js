@@ -6,14 +6,15 @@ module.exports = {
   description: "Interact with Blackbox",
   async run({ api, event, send, args }) {
     const prompt = args.join(" ");
-
+    
     if (!prompt) {
+      throw new Error(`Usage: ${api.prefix + name} [your question]`);
       // Send the usage instruction to the user instead of throwing an error
       return send(`Usage: ${api.prefix + name} [your question]`);
     }
 
     try {
-      send("Wait kupal kaba ?");
+      send("Please wait... 🔎");
 
       const gpt = await axios.get('https://joshweb.click/api/blackboxai', {
         params: {
@@ -27,8 +28,7 @@ module.exports = {
       }
 
       return send(`${gpt.data.result}
-
-🤖 AI by Khaile`);
+🤖 WieAI by Neth Aceberos`);
     } catch (err) {
       send(err.message || "An unexpected error occurred.");
     }
