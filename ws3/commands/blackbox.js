@@ -15,10 +15,11 @@ module.exports = {
     try {
       send("Please wait... 🔎");
 
-      const gpt = await axios.get('https://joshweb.click/api/blackboxai', {
+      // Make the API request with the correct query and user ID
+      const gpt = await axios.get(`https://joshweb.click/api/blackboxai`, {
         params: {
-          q: prompt,
-          uid: event.sender.id
+          q: prompt,             // Question from the user
+          uid: event.sender.id   // User ID from the event object
         }
       });
 
@@ -26,10 +27,12 @@ module.exports = {
         throw new Error("Failed to get a valid response from the API.");
       }
 
+      // Send the result back to the user
       return send(`${gpt.data.result}
 
 🤖 WieAI by Neth Aceberos`);
     } catch (err) {
+      // Handle errors gracefully
       send(err.message || "An unexpected error occurred.");
     }
   }
